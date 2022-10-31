@@ -1,0 +1,57 @@
+uuu_version 1.2.39
+#Created: 30-08-2022
+#Author: Owasys
+#Company: Owasys S.L
+
+SDPS: boot -f ./owa5x-flash.bin
+
+# Henceforth, we will talk with the uboot we just downloaded to the RAM.
+
+#Bootloader ( owa5x-flash.bin ) -> NAND
+FB: ucmd setenv fastboot_buffer ${loadaddr}
+FB: download -f ./owa5x-flash.bin
+FB: ucmd nandbcb init ${fastboot_buffer} NAND.u-boot ${fastboot_bytes}
+FB: ucmd if env exists NAND.u-boot; then nand erase.part NAND.u-boot; nand write ${fastboot_buffer} NAND.u-boot ${fastboot_bytes}; else true; fi;
+
+#dtb ( imx8mp-owa5x.dtb ) -> NAND, partition kernel dtb
+FB: ucmd setenv fastboot_buffer ${loadaddr}
+FB: download -f ./imx8mp-owa5x.dtb
+FB: ucmd nand erase.part NAND.dtb; nand write ${fastboot_buffer} NAND.dtb ${fastboot_bytes};
+
+#kernel ( Image-owa5x.bin ) -> NAND, partition Image
+FB: ucmd setenv fastboot_buffer ${loadaddr}
+FB: download -f ./Image-owa5x.bin
+FB: ucmd nand erase.part NAND.kernel
+FB[-t 15000]: ucmd nand write ${fastboot_buffer} NAND.kernel ${fastboot_bytes}
+
+#Kernel+rootfs -> eMMC
+FB: ucmd setenv mmc 2
+FB: ucmd setenv emmc_dev 2
+FB: ucmd setenv fastboot_dev mmc
+FB: ucmd setenv mmcdev ${emmc_dev}
+FB: ucmd mmc dev ${emmc_dev}
+FB: flash -raw2sparse all ./cetus-image-owa5x.wic
+FB: ucmd if env exists emmc_ack; then ; else setenv emmc_ack 0; fi;
+FB: ucmd mmc partconf ${emmc_dev} ${emmc_ack} 1 0
+
+
+#--------------------------------------------------------------------------------------------------------
+#                                             FUSES SECTION
+#                                 WARNING! NON-REVERSIBLE OPERATION
+#--------------------------------------------------------------------------------------------------------
+
+
+#Program fuses to boot from NAND
+#FB: ucmd fuse prog -y 1 3 98004000
+
+#Program fuses to set MAC
+#FB: ucmd fuse prog -y 9 0 7b6c4b66
+#FB: ucmd fuse prog -y 9 1 0000244e
+
+#Program fuses to block MAC
+#FB: ucmd fuse prog -y 0 0 ffafe9eb
+
+FB: Done
+
+
+

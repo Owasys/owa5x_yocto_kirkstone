@@ -1,0 +1,30 @@
+uuu_version 1.2.39
+#Created: 16-12-2022
+#Author: Alvaro Guzman Juan
+#Company: Owasys S.L
+
+SDPS: boot -f owa5x-flash.bin 
+
+# Henceforth, we will talk with the uboot we just downloaded to the RAM.
+
+#Bootloader ( owa5x-flash ) -> NAND
+FB: ucmd setenv fastboot_buffer ${loadaddr}
+FB: ucmd setenv fastboot_bytes 3601736
+FB: download -f owa5x-flash.bin
+FB: ucmd if env exists NAND.u-boot; then nand erase.part NAND.u-boot; nand write ${fastboot_buffer} NAND.u-boot ${fastboot_bytes}; else true; fi;
+FB: ucmd nandbcb init ${fastboot_buffer} NAND.u-boot ${fastboot_bytes}
+FB: ucmd nand erase.part NAND.u-boot-env
+FB: ucmd nand erase.part NAND.u-boot-env.backup
+
+#Rootfs ( rootfs ) -> NAND, partición rootfs A
+FB: ucmd setenv fastboot_buffer ${loadaddr}
+FB: ucmd setenv fastboot_bytes 3601736
+FB: download -f cetus-image-nand-owa5x.ubi
+#FB: ucmd if env exists NAND.file-system_part; then nand erase.part NAND.file-system; nand write ${fastboot_buffer} NAND.file-system ${fastboot_bytes}; else true; fi;
+FB[-t 20000]: ucmd nand erase.part NAND.file-systemA; 
+FB[-t 40000]: ucmd nand write ${fastboot_buffer} NAND.file-systemA ${fastboot_bytes};
+#Rootfs ( rootfs ) -> NAND, partición rootfs B
+FB[-t 20000]: ucmd nand erase.part NAND.file-systemB; 
+FB[-t 40000]: ucmd nand write ${fastboot_buffer} NAND.file-systemB ${fastboot_bytes};
+
+FB: Done

@@ -1,7 +1,7 @@
-# BUILD
+# BUILD CETUS IMAGE
 ~~~~sh
 source owasys-setup.sh -b build_owa5x
-bitbake cetus-image
+bitbake cetus-image-nand
 ~~~~
 
 After that place the *.uuu script in the *build_owa5x/tmp/deploy/images/owa5x* folder and execute it to flash the owa5X unit:

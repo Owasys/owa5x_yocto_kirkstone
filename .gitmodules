@@ -10,3 +10,39 @@
 [submodule "sources/meta-timesys"]
 	path = sources/meta-timesys
 	url = https://github.com/TimesysGit/meta-timesys.git
+[submodule "sources/meta-browser"]
+	path = sources/meta-browser
+	url = https://github.com/OSSystems/meta-browser.git
+[submodule "sources/meta-clang"]
+	path = sources/meta-clang
+	url = https://github.com/kraj/meta-clang
+[submodule "sources/meta-freescale"]
+	path = sources/meta-freescale
+	url = https://github.com/Freescale/meta-freescale.git
+[submodule "sources/meta-freescale-3rdparty"]
+	path = sources/meta-freescale-3rdparty
+	url = https://github.com/Freescale/meta-freescale-3rdparty.git
+[submodule "sources/meta-freescale-distro"]
+	path = sources/meta-freescale-distro
+	url = https://github.com/Freescale/meta-freescale-distro.git
+[submodule "sources/meta-imx"]
+	path = sources/meta-imx
+	url = https://github.com/nxp-imx/meta-imx.git
+[submodule "sources/meta-nxp-demo-experience"]
+	path = sources/meta-nxp-demo-experience
+	url = https://github.com/nxp-imx-support/meta-nxp-demo-experience.git
+[submodule "sources/meta-openembedded"]
+	path = sources/meta-openembedded
+	url = https://github.com/openembedded/meta-openembedded.git
+[submodule "sources/meta-virtualization"]
+	path = sources/meta-virtualization
+	url = git://git.yoctoproject.org/meta-virtualization
+[submodule "sources/poky"]
+	path = sources/poky
+	url = https://git.yoctoproject.org/poky
+[submodule "sources/--name"]
+	path = sources/--name
+	url = https://github.com/Freescale/fsl-community-bsp-base.git
+[submodule "sources/base"]
+	path = sources/base
+	url = https://github.com/Freescale/fsl-community-bsp-base.git

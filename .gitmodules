@@ -7,3 +7,6 @@
 [submodule "sources/meta-qt6"]
 	path = sources/meta-qt6
 	url = https://code.qt.io/yocto/meta-qt6.git
+[submodule "sources/meta-timesys"]
+	path = sources/meta-timesys
+	url = https://github.com/TimesysGit/meta-timesys.git

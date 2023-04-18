@@ -43,3 +43,6 @@
 [submodule "sources/base"]
 	path = sources/base
 	url = https://github.com/Freescale/fsl-community-bsp-base.git
+[submodule "sources/meta-owasys"]
+	path = sources/meta-owasys
+	url = https://github.com/Owasys/meta-owasys.git

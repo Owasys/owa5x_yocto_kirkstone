@@ -1,18 +1,9 @@
 [submodule "sources/meta-rauc"]
 	path = sources/meta-rauc
 	url = https://github.com/rauc/meta-rauc.git
-[submodule "sources/meta-qt6"]
-	path = sources/meta-qt6
-	url = https://code.qt.io/yocto/meta-qt6.git
 [submodule "sources/meta-timesys"]
 	path = sources/meta-timesys
 	url = https://github.com/TimesysGit/meta-timesys.git
-[submodule "sources/meta-browser"]
-	path = sources/meta-browser
-	url = https://github.com/OSSystems/meta-browser.git
-[submodule "sources/meta-clang"]
-	path = sources/meta-clang
-	url = https://github.com/kraj/meta-clang
 [submodule "sources/meta-freescale"]
 	path = sources/meta-freescale
 	url = https://github.com/Freescale/meta-freescale.git

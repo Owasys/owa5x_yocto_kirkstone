@@ -46,3 +46,6 @@
 [submodule "sources/meta-owasys-owa5x-bsp"]
 	path = sources/meta-owasys-owa5x-bsp
 	url = https://github.com/Owasys/meta-owasys-owa5x-bsp.git
+[submodule "sources/meta-security"]
+	path = sources/meta-security
+	url = git://git.yoctoproject.org/meta-security

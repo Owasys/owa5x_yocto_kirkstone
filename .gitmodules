@@ -34,6 +34,9 @@
 [submodule "sources/base"]
 	path = sources/base
 	url = https://github.com/Freescale/fsl-community-bsp-base.git
+[submodule "sources/meta-security"]
+	path = sources/meta-security
+	url = git://git.yoctoproject.org/meta-security
 [submodule "sources/meta-owasys-owa5x-security"]
 	path = sources/meta-owasys-owa5x-security
 	url = https://github.com/Owasys/meta-owasys-owa5x-security.git

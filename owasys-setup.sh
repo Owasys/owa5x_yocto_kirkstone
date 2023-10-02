@@ -339,17 +339,8 @@ configure_dry_build() {
 }
 
 configure_flashable_image() {
-    PROJECT_CONFIGURATION=1
-    grep -q 'PACKAGE_CLASSES = "package_deb"' "$BUILD_DIR/conf/local.conf"
-    if [ $? -ne 0 ]; then
-        {
-            echo
-            echo "# Switch to Debian packaging and include package-management in the image"
-            echo "PACKAGE_CLASSES = \"package_deb\""
-            echo "EXTRA_IMAGE_FEATURES += \"package-management\"" 
-        } >> "$BUILD_DIR/conf/local.conf"
-    fi
 
+    PROJECT_CONFIGURATION=1
     select_layers
     select_layer_odm
     configure_dry_build

@@ -34,6 +34,21 @@
 [submodule "sources/base"]
 	path = sources/base
 	url = https://github.com/Freescale/fsl-community-bsp-base.git
-[submodule "sources/meta-owasys"]
-	path = sources/meta-owasys
-	url = https://github.com/Owasys/meta-owasys.git
+[submodule "sources/meta-security"]
+	path = sources/meta-security
+	url = git://git.yoctoproject.org/meta-security
+[submodule "sources/meta-owasys-owa5x-security"]
+	path = sources/meta-owasys-owa5x-security
+	url = https://github.com/Owasys/meta-owasys-owa5x-security.git
+[submodule "sources/meta-owasys-owa5x-ml"]
+	path = sources/meta-owasys-owa5x-ml
+	url = https://github.com/Owasys/meta-owasys-owa5x-ml.git
+[submodule "sources/meta-owasys-owa5x-odm"]
+	path = sources/meta-owasys-owa5x-odm
+	url = https://github.com/Owasys/meta-owasys-owa5x-odm.git
+[submodule "sources/meta-owasys-owa5x-bsp"]
+	path = sources/meta-owasys-owa5x-bsp
+	url = https://github.com/Owasys/meta-owasys-owa5x-bsp.git
+[submodule "sources/meta-security"]
+	path = sources/meta-security
+	url = git://git.yoctoproject.org/meta-security

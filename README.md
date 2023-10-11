@@ -16,12 +16,14 @@ To setup a building yocto environment for the owa5X family:
 git clone --recursive https://github.com/Owasys/owa5x_yocto_kirkstone.git
 ```
 
-# BUILD CETUS IMAGE
-~~~~sh
-source owasys-setup.sh -b build_owa5x
-bitbake cetus-image-nand
-~~~~
+# BUILD owa5X IMAGE
 
-After that place the *.uuu script in the *build_owa5x/tmp/deploy/images/owa5x* folder and execute it to flash the owa5X unit:
+We configure the image that will be baked through an interactive script which is launched with the command below:
+
+`source owasys-setup.sh -b build_owa5x`
+
+A process will begin where you have to accept the EULA license terms and configure the Owasys layers that will compose your image. Finally, you will be offered to let the script build the image for you automatically or to stop once the environment has been set up. This way you can manually change project options before launching the build of the image.
+
+After that, place the *.uuu script in the *build_owa5x/tmp/deploy/images/owa5x* folder and execute it to flash the owa5X unit:
 
 `$sudo uuu owa_uboot_nand_rootfs_YOCTO_2.0.0.uuu`

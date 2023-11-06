@@ -154,9 +154,9 @@ configure_layer_odm()
     change_or_add_value_to_conf "ODM_APP_DESCRIPTION" "$ODM_APP_DESCRIPTION" "# Description of the custom app"
     change_or_add_value_to_conf "ODM_USER" "$ODM_USER" "# Your ODM login user" 
     change_or_add_value_to_conf "ODM_PASS" "$ODM_PASS" "# Your ODM login password"
-    change_or_add_value_to_conf "CERT_KEY_NAME" "$CERT_KEY_NAME" "# The path to your private certificate key (for signing the Rauc bundles)"
-    change_or_add_value_to_conf "CERT_NAME" "$CERT_NAME" "# The path to your public certificate (for signing the Rauc bundles)"
-    change_or_add_value_to_conf "TRUST_CHAIN" "$TRUST_CHAIN" "# The path to your certificate trust chain (public certs of the root and the intermediate CA that signed your certificate)"
+    change_or_add_value_to_conf "CERT_KEY_NAME" "$CERT_KEY_NAME" "# The path to your private certificate key, for signing the Rauc bundles"
+    change_or_add_value_to_conf "CERT_NAME" "$CERT_NAME" "# The path to your public certificate, for signing the Rauc bundles"
+    change_or_add_value_to_conf "TRUST_CHAIN" "$TRUST_CHAIN" "# The path to your certificate trust chain, public certs of the root and the intermediate CA that signed your certificate"
     change_or_add_value_to_conf "UPLOAD_BUNDLE" 1 "# Whether to upload the bundle to the ODM or not"
     change_or_add_value_to_conf "IS_BUNDLE" "$IS_BUNDLE" "# Is it a RAUC bundle?"   
 }
@@ -168,7 +168,7 @@ change_or_add_value_to_conf() {
     local first=${4:-0}
     grep -q $pattern $BUILD_DIR/conf/local.conf
     if [[ $? -eq 0 ]]; then
-        sed -i "/\\$pattern/ {s/=.*/= \"$value\"/}" $BUILD_DIR/conf/local.conf
+        sed -i "/\\$pattern/ {s&=.*&= \"$value\"&}" $BUILD_DIR/conf/local.conf
     else
         if [[ $first -eq 1 ]]; then
             echo >> $BUILD_DIR/conf/local.conf

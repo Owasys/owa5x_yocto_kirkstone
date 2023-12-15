@@ -574,11 +574,36 @@ make_local_conf_backup() {
     cp $BUILD_DIR/conf/local.conf $BUILD_DIR/conf/local.conf.org
 }
 
+set_dl_and_sstate_dir()
+{
+
+    # Basically we do know if we are at basajaun using its machine-id
+    CURRENT_MACHINE=$(cat /etc/machine-id)
+    if [ "$CURRENT_MACHINE" == "597d53a21b394694b2cb1cb79678ff4b" ]; then
+
+        DL_DIR_NUMBER=$(grep -n "DL_DIR ?=" $BUILD_DIR/conf/local.conf | cut -d : -f 1 )
+        SSTATE_DIR_NUMBER=$(grep -n "SSTATE_DIR ?=" $BUILD_DIR/conf/local.conf | cut -d : -f 1 )
+
+        if [[ $DL_DIR_NUMBER -ge 0 ]]; then
+            sed -i $DL_DIR_NUMBER\d $BUILD_DIR/conf/local.conf
+            sed -i $DL_DIR_NUMBER\i\ "DL_DIR ?= \"/home/yocto/YOCTO_SHARED_RESOURCES/downloads\"" $BUILD_DIR/conf/local.conf
+        fi
+
+        if [[ $SSTATE_DIR_NUMBER -gt 0 ]]; then
+            sed -i $SSTATE_DIR_NUMBER\d $BUILD_DIR/conf/local.conf
+            sed -i $SSTATE_DIR_NUMBER\i\ "SSTATE_DIR ?= \"/home/yocto/YOCTO_SHARED_RESOURCES/sstate-cache\"" $BUILD_DIR/conf/local.conf    
+        else
+            sed -i $DL_DIR_NUMBER\i\ "SSTATE_DIR ?= \"/home/yocto/YOCTO_SHARED_RESOURCES/sstate-cache\"" $BUILD_DIR/conf/local.conf    
+        fi
+    fi
+}
+
 main() 
 {
     normal_flow
     configure_developer_mode
     select_build
+    set_dl_and_sstate_dir
     show_chosen_build_options
     make_local_conf_backup
     #cd $BUILD_DIR
